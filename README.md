@@ -81,3 +81,35 @@ void loop(){
 ```
 
 ### 기본 예제
+
+다음은 라이블러리 기본 예제인 raw입니다.
+
+위에 소개된 내용의 총집합으로 볼 수 있습니다.
+
+```cpp
+#include <Wire.h>
+#include <MechaQMC5883.h>
+
+MechaQMC5883 qmc;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  qmc.init();
+  //qmc.setMode(Mode_Continuous,ODR_200Hz,RNG_2G,OSR_256);
+}
+
+void loop() {
+  int x,y,z;
+  qmc.read(&x,&y,&z);
+
+  Serial.print("x: ");
+  Serial.print(x);
+  Serial.print(" y: ");
+  Serial.print(y);
+  Serial.print(" z: ");
+  Serial.print(z);
+  Serial.println();
+  delay(100);
+}
+```
