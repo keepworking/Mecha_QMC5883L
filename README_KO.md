@@ -4,11 +4,11 @@ HMC5883 지자기 나침반 센서의 수명 만료(EOL)로인해 그동안의 H
 
 ## Arduino Code
 
-There are a few simple rules for using that library. Please read the following summary and apply it to your project
+해당 라이브러리를 이용하기 위한 몇가지 간단한 규칙이 있습니다. 아래 정리된 내용을 읽어주시고 사용하시는 프로젝트에 적용해 주세요
 
-### Basic Elements
+### 기본 요소
 
-Required header files (#include ...) and Setup side code.
+필수적으로 필요한 헤더파일(#include...)과 Setup 쪽 코드 입니다.
 
 ```cpp
 #include <Wire.h>
@@ -19,9 +19,9 @@ void setup(){
 }
 ```
 
-### Object Declaration
+### 객체 선언
 
-The object declaration method. It is used outside the setup statement, and a name such as qmc can be changed to any other name you want.
+객체 선언 방식입니다. setup문 밖에서 사용이 되며 qmc와 같은 이름은 사용자가 원하는 다른 이름으로 변경이 가능합니다.
 
 ```cpp
 #include <Wire.h>
@@ -30,11 +30,11 @@ The object declaration method. It is used outside the setup statement, and a nam
 MechaQMC5883 qmc;
 ```
 
-### initialization
+### 사용 설정
 
-QMC5883 Sensor's setting function.
+QMC5883 센서의 설정 함수 입니다.
 
-The init function allows you to take advantage of the features of the QMC5883 sensor by default.
+init 함수를 사용하면 기본 설정으로 QMC5883센서의 기능을 이용할 수 있습니다.
 
 ```cpp
 void setup(){
@@ -43,7 +43,7 @@ void setup(){
 }
 ```
 
-If you want more detailed settings, you can use it as follows.
+좀더 세세한 설정을 원한다면 다음과 같이 사용이 가능합니다.
 
 ```cpp
 void setup(){
@@ -53,7 +53,7 @@ void setup(){
 }
 ```
 
-The values ​​used for setMode can take the following values:
+setMode에 사용되는 값들은 다음 값들을 이용할 수 있습니다.
 
 ```
 Mode : Mode_Standby / Mode_Continuous
@@ -68,9 +68,9 @@ OSR : OSR_512 / OSR_256 / OSR_128 / OSR_64
 over sampling rate
 ```
 
-### Read values
+### 값 읽기
 
-How to read the measured sensor value is as follows.
+측정한 센서의 값을 읽는 법은 다음과 같습니다.
 
 ```cpp
 void loop(){
@@ -80,9 +80,11 @@ void loop(){
 }
 ```
 
-## Basic example
+### 기본 예제
 
-It can be seen as a collection of the contents mentioned above.
+다음은 라이브러리 기본 예제인 raw입니다.
+
+위에 소개된 내용의 총집합으로 볼 수 있습니다.
 
 ```cpp
 #include <Wire.h>
