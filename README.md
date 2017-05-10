@@ -1,6 +1,6 @@
 # Mechasolution QMC5883 Library
 
-HMC5883 지자기 나침반 센서의 수명 만료(EOL)로인해 그동안의 HMC5883 센서는 생산이 중단 되었고, 중국의 대체 상품인 QMC5883으로 변경이 되었습니다.
+[한글 설명 바로가기](https://github.com/keepworking/Mecha_QMC5883/blob/master/README_KO.md)
 
 ## Arduino Code
 
