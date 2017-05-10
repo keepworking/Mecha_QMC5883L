@@ -16,7 +16,7 @@ void MechaQMC5883::WriteReg(byte Reg,byte val){
 void MechaQMC5883::init(){
   WriteReg(0x0B,0x01);
   //Define Set/Reset period
-  setMode(Mode_Standby,ODR_200Hz,RNG_8G,OSR_512);
+  setMode(Mode_Continuous,ODR_200Hz,RNG_8G,OSR_512);
   /*
   Define
   OSR = 512
@@ -28,6 +28,7 @@ void MechaQMC5883::init(){
 
 void MechaQMC5883::setMode(uint16_t mode,uint16_t odr,uint16_t rng,uint16_t osr){
   WriteReg(0x09,mode|odr|rng|osr);
+  Serial.println(mode|odr|rng|osr,HEX);
 }
 
 
@@ -36,6 +37,9 @@ void MechaQMC5883::softReset(){
 }
 
 void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z){
+  Wire.beginTransmission(address);
+  Wire.write(0x00);
+  Wire.endTransmission();
   Wire.requestFrom(address, 6);
   *x = Wire.read(); //LSB  x
   *x |= Wire.read() << 8; //MSB  x

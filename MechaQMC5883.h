@@ -12,20 +12,20 @@
 //0x09
 
 #define Mode_Standby    0b00000000
-#define Mode_Continuous 0b01000000
+#define Mode_Continuous 0b00000001
 
 #define ODR_10Hz        0b00000000
-#define ODR_50Hz        0b00010000
-#define ODR_100Hz       0b00100000
-#define ODR_200Hz       0b00110000
+#define ODR_50Hz        0b00000100
+#define ODR_100Hz       0b00001000
+#define ODR_200Hz       0b00001100
 
 #define RNG_2G          0b00000000
-#define RNG_8G          0b00000100
+#define RNG_8G          0b00010000
 
 #define OSR_512         0b00000000
-#define OSR_256         0b00000001
-#define OSR_128         0b00000010
-#define OSR_64          0b00000011
+#define OSR_256         0b01000000
+#define OSR_128         0b10000000
+#define OSR_64          0b11000000
 
 
 class MechaQMC5883{
