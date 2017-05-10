@@ -2,6 +2,7 @@
 #define Mecha_QMC5883
 
 #include "Arduino.h"
+#include "Wire.h"
 
 #define QMC5883_ADDR 0x0D
 
@@ -30,6 +31,7 @@
 class MechaQMC5883{
 public:
 
+
 void setAddress(uint8_t addr);
 
 void init(); //init qmc5883
@@ -38,12 +40,11 @@ void setMode(uint16_t mode,uint16_t odr,uint16_t rng,uint16_t osr); // setting
 
 void softReset(); //soft RESET
 
-void read(uint16_t x,uint16_t y,uint16_t z); //reading
+void read(uint16_t* x,uint16_t* y,uint16_t* z); //reading
 
 private:
 
 void WriteReg(uint8_t Reg,uint8_t val);
-
 
 uint8_t address = QMC5883_ADDR;
 
