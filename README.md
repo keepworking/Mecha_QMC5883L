@@ -1,4 +1,4 @@
-# Mechasolution QMC5883 Library
+# Mechasolution QMC5883L Library
 
 [한글 설명 바로가기](https://github.com/keepworking/Mecha_QMC5883/blob/master/README_KO.md)
 
