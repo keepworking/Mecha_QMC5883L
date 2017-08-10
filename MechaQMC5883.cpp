@@ -28,7 +28,6 @@ void MechaQMC5883::init(){
 
 void MechaQMC5883::setMode(uint16_t mode,uint16_t odr,uint16_t rng,uint16_t osr){
   WriteReg(0x09,mode|odr|rng|osr);
-  Serial.println(mode|odr|rng|osr,HEX);
 }
 
 
