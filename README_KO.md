@@ -80,6 +80,29 @@ void loop(){
 }
 ```
 
+방위각에 대한 값입니다.
+
+```cpp
+void loop(){
+  int x,y,z;
+  int a;
+  //float a; //float 형도 지원됩니다.
+
+  qmc.read(&x,&y,&z,&a);
+}
+```
+
+별도로 원하는 방위각도 구할 수 있습니다.
+
+```cpp
+void loop(){
+  int x,y,z;
+  int a;
+
+  qmc.read(&x,&y,&z);
+  a = qmc.azimuth(&y,&x);
+}
+```
 ### 기본 예제
 
 다음은 라이브러리 기본 예제인 raw입니다.

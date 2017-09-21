@@ -47,3 +47,19 @@ void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z){
   *z = Wire.read(); //LSB y
   *z |= Wire.read() << 8; //MSB y
 }
+
+void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z,int* a){
+  read(x,y,z);
+  *a = azimuth(y,x);
+}
+
+void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z,float* a){
+  read(x,y,z);
+  *a = azimuth(y,x);
+}
+
+
+float MechaQMC5883::azimuth(uint16_t *a, uint16_t *b){
+  float azimuth = atan2((int)*a,(int)*b) * 180.0/PI;
+  return azimuth < 0?360 + azimuth:azimuth;
+}

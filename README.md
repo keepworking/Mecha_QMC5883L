@@ -80,6 +80,30 @@ void loop(){
 }
 ```
 
+and we can get azimuth too.
+
+```cpp
+void loop(){
+  int x,y,z;
+  int a;
+  //float a; //can get float value
+
+  qmc.read(&x,&y,&z,&a);
+}
+```
+
+also can claculate azimuth you want
+
+```cpp
+void loop(){
+  int x,y,z;
+  int a;
+
+  qmc.read(&x,&y,&z);
+  a = qmc.azimuth(&y,&x);
+}
+```
+
 ## Basic example
 
 It can be seen as a collection of the contents mentioned above.
