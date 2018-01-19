@@ -2,6 +2,15 @@
 
 [한글 설명 바로가기](https://github.com/keepworking/Mecha_QMC5883/blob/master/README_KO.md)
 
+```
+#include <stdio.h>
+
+void main(){
+  printf("hello");
+}
+```
+
+
 ## Arduino Code
 
 There are a few simple rules for using that library. Please read the following summary and apply it to your project
