@@ -40,11 +40,11 @@ void setMode(uint16_t mode,uint16_t odr,uint16_t rng,uint16_t osr); // setting
 
 void softReset(); //soft RESET
 
-void read(uint16_t* x,uint16_t* y,uint16_t* z); //reading
-void read(uint16_t* x,uint16_t* y,uint16_t* z,int* a);
-void read(uint16_t* x,uint16_t* y,uint16_t* z,float* a);
+int read(int* x,int* y,int* z); //reading
+int read(int* x,int* y,int* z,int* a);
+int read(int* x,int* y,int* z,float* a);
 
-float azimuth(uint16_t* a,uint16_t* b);
+float azimuth(int* a,int* b);
 
 private:
 

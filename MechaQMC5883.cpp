@@ -35,31 +35,43 @@ void MechaQMC5883::softReset(){
   WriteReg(0x0A,0x80);
 }
 
-void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z){
+/**
+ * read values from device
+ * @return status value:
+ *  - 0:success
+ *  - 1:data too long to fit in transmit buffer
+ *  - 2:received NACK on transmit of address
+ *  - 3:received NACK on transmit of data
+ *  - 4:other error
+ *  - 8:overflow (magnetic field too strong)
+ */
+int MechaQMC5883::read(int* x,int* y,int* z){
   Wire.beginTransmission(address);
   Wire.write(0x00);
-  Wire.endTransmission();
-  Wire.requestFrom(address, 6);
-  *x = Wire.read(); //LSB  x
-  *x |= Wire.read() << 8; //MSB  x
-  *y = Wire.read(); //LSB  z
-  *y |= Wire.read() << 8; //MSB z
-  *z = Wire.read(); //LSB y
-  *z |= Wire.read() << 8; //MSB y
+  int err = Wire.endTransmission();
+  if (err) {return err;}
+  Wire.requestFrom(address, 7);
+  *x = (int)(int16_t)(Wire.read() | Wire.read() << 8);
+  *y = (int)(int16_t)(Wire.read() | Wire.read() << 8);
+  *z = (int)(int16_t)(Wire.read() | Wire.read() << 8);
+  byte overflow = Wire.read() & 0x02;
+  return overflow << 2;
 }
 
-void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z,int* a){
-  read(x,y,z);
+int MechaQMC5883::read(int* x,int* y,int* z,int* a){
+  int err = read(x,y,z);
   *a = azimuth(y,x);
+  return err;
 }
 
-void MechaQMC5883::read(uint16_t* x,uint16_t* y,uint16_t* z,float* a){
-  read(x,y,z);
+int MechaQMC5883::read(int* x,int* y,int* z,float* a){
+  int err = read(x,y,z);
   *a = azimuth(y,x);
+  return err;
 }
 
 
-float MechaQMC5883::azimuth(uint16_t *a, uint16_t *b){
+float MechaQMC5883::azimuth(int *a, int *b){
   float azimuth = atan2((int)*a,(int)*b) * 180.0/PI;
   return azimuth < 0?360 + azimuth:azimuth;
 }
